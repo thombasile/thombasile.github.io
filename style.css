@@ -1,0 +1,227 @@
+/* ---------- tokens ---------- */
+:root {
+  --paper:       #fdfcfa;
+  --canvas:      #eceeef;
+  --ink:         #1a1917;
+  --ink-soft:    #55534d;
+  --rule:        #dedbd3;
+  --accent:      #29734c;
+
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ---------- reset ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover { border-bottom-color: var(--accent); }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- page layout ---------- */
+.decor {
+  position: fixed;
+  width: 220px;
+  height: 220px;
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+ 
+.decor--top {
+  top: -30px;
+  left: -30px;
+}
+ 
+.decor--bottom {
+  bottom: -30px;
+  right: -30px;
+  transform: rotate(180deg);
+}
+ 
+.decor--page-tr,
+.decor--page-bl {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  opacity: 0.35;
+  z-index: 2;
+}
+ 
+.decor--page-tr {
+  top: -18px;
+  right: -18px;
+  transform: scaleX(-1);
+}
+ 
+.decor--page-bl {
+  bottom: -18px;
+  left: -18px;
+  transform: scaleY(-1);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 3rem auto 4rem;
+  padding: 3.75rem 3rem 4.5rem;
+  background: var(--paper);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.05), 0 12px 28px rgba(26, 25, 23, 0.06);
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  column-gap: 3.5rem;
+  align-items: start;
+}
+
+/* ---------- left column ---------- */
+.identity {
+  position: sticky;
+  top: 4rem;
+  border-right: 1px solid var(--rule);
+  padding-right: 2rem;
+}
+
+.identity__photo {
+  display: block;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.identity__name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 0.6rem;
+}
+
+.identity__role {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.5rem;
+}
+
+.identity__contact {
+  list-style: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.identity__contact a:hover {
+  border-bottom: 1px solid transparent;
+}
+
+.icon {
+  flex: 0 0 auto;
+  display: inline-block;
+  vertical-align: bottom;
+  position: relative; 
+  bottom: -2px;
+  color: var(--ink-soft);
+}
+
+.identity__bio {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- right column ---------- */
+.content__heading {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0 0 0.75rem;
+}
+
+.content__intro {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin: 0 0 2.5rem;
+}
+
+.notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notes__item {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--rule);
+}
+.notes__item:first-child { 
+  border-top: none; 
+  padding-top: 0; 
+}
+
+.notes__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.15rem;
+  /* color: var(--title); */
+  line-height: 1.4;
+  margin: 0 0 0.5rem;
+}
+
+.notes__desc {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 680px) {
+  .decor {
+    display: none;
+  }
+  .page {
+    grid-template-columns: 1fr;
+    margin: 1.25rem auto 2rem;
+    padding: 2.5rem 1.25rem 3rem;
+    border-radius: 3px;
+  }
+  .identity {
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding-right: 0;
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+  }
+}
+ 
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
