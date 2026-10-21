@@ -133,6 +133,7 @@ button:focus-visible {
   font-size: 0.85rem;
   display: flex;
   gap: 0.75rem;
+  vertical-align: middle;
 }
 
 .identity__contact a:hover {
